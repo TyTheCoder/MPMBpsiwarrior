@@ -21,7 +21,7 @@ AddSubClass("fighter", "psi warrior", {
 			description : function () {
 				var a = [
 					"You harbor a wellspring of psionic energy within yourself.",
-					"This energy is represented by your Psionic Energy dice. You have a number of these dice equal to twice your proficiency bonus, and they fuel various psionic powers you have, which are detailed below. Some of your powers expend the Psionic Energy die they use, as specified in a power's description, and you can't use a power if it requires you to use a die when your dice are all expended. You regain all your expended Psionic Energy dice when you finish a long rest. In addition, as a bonus action, you can regain one expended Psionic Energy die, but you can't do so again until you finish a short or long rest. The powers below use your Psionic Energy dice."
+					"This energy is represented by your Psionic Energy dice. You have a number of these dice equal to twice your proficiency bonus, and they fuel various psionic powers you have, which are detailed below. Some of your powers expend the Psionic Energy die they use, as specified in a power's description, and you can't use a power if it requires you to use a die when your dice are all expended."
 				];
 				var b = desc([a[0], "Your Psionic Energy Dice are each a d6.", a[1]]);
 				var c = desc([a[0], "Your Psionic Energy Dice are each a d8.", a[1]]);
