@@ -1,0 +1,115 @@
+var iFileName = "Psi_Warrior_tcoe.js";
+RequiredSheetVersion(12.999);
+
+SourceList["TCoE"] = {
+	name : "Tasha's Cauldron of Everything",
+	abbreviation : "TCoE",
+	group : "Primary Sources",
+	url : "https://www.dndbeyond.com/sources/tcoe"
+};
+
+
+AddSubClass("fighter", "psi warrior", {
+	regExpSearch: /^(?=.*(fighter))(?=.*(psi))(?=.*(warrior)).*$/i,
+	subname: "Psi Warrior",
+	source: ["TCoE", 42 ],
+	features: {
+		"subclassfeature3": {
+			name: "Psionic Power",
+			source: ["TCoE", 43],
+			minlevel: 3,
+			description : function () {
+				var a = [
+					"You harbor a wellspring of psionic energy within yourself.",
+					"This energy is represented by your Psionic Energy dice. You have a number of these dice equal to twice your proficiency bonus, and they fuel various psionic powers you have, which are detailed below. Some of your powers expend the Psionic Energy die they use, as specified in a power's description, and you can't use a power if it requires you to use a die when your dice are all expended. You regain all your expended Psionic Energy dice when you finish a long rest. In addition, as a bonus action, you can regain one expended Psionic Energy die, but you can't do so again until you finish a short or long rest. The powers below use your Psionic Energy dice."
+				];
+				var b = desc([a[0], "Your Psionic Energy Dice are each a d6.", a[1]]);
+				var c = desc([a[0], "Your Psionic Energy Dice are each a d8.", a[1]]);
+				var d = desc([a[0], "Your Psionic Energy Dice are each a d10", a[1]]);
+				var e = desc([a[0], "Your Psionic Energy Dice are each a d12", a[1]]);
+				return levels.map(function (n) {
+					return n < 5 ? b : n < 11 ? c : n < 17 ? d : e;
+				});
+				
+			}(),
+			usages : "Proficiency bonus per ",
+			usagescalc : "event.value = What('Proficiency Bonus')*2;",
+			recovery : "long rest"
+		},
+		"subclassfeature3.1": {
+			name: "Regain Psionic Energy",
+			source : ["TCoE",43],
+			minlevel: 3,
+			description: desc([
+				"As a bonus action, I can regain one expended psionic energy die."
+			]),
+			action: ["bonus action",""],
+			usages : "1",
+			recovery : "short rest"
+		},
+		"subclassfeature3.2": {
+			name: "Protective Field",
+			source : ["TCoE",43],
+			minlevel: 3,
+			description: desc([
+				"When you or another creature you can see within 30 feet of you takes damage, you can use your reaction to expend one Psionic Energy die, roll the die, and reduce the damage taken by the number rolled plus your Intelligence modifier (minimum reduction of 1), as you create a momentary shield of telekinetic force."
+			]),
+			action: ["reaction",""]
+		},
+		"subclassfeature3.3": {
+			name: "Telekinetic Movement",
+			source : ["TCoE",43],
+			minlevel: 3,
+			description: desc([
+				"You can move an object or a creature with your mind. As an action, you target one loose object that is Large or smaller or one willing creature, other than yourself. If you can see the target and it is within 30 feet of you, you can move it up to 30 feet to an unoccupied space you can see. Alternatively, if it is a Tiny object, you can move it to or from your hand. Either way, you can move the target horizontally, vertically, or both. Once you take this action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again."
+			]),
+			action: ["action",""]
+		},
+		"subclassfeature7.1": {
+			name: "Guarded Mind",
+			source : ["TCoE",43],
+			minlevel: 7,
+			description: desc([
+				"As a bonus action, you can propel your body with your mind. You gain a flying speed equal to twice your walking speed until the end of the current turn.",
+				"Once you take this bonus action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again."
+			]),
+			action: ["bonus action",""]
+		},
+		"subclassfeature7.2": {
+			name: "Telekinetic Thrust",
+			source : ["TCoE",43],
+			minlevel: 7,
+			description: desc([
+				"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw against a DC equal to 8 + your proficiency bonus + your Intelligence modifier.",
+				"If the save fails, you can knock the target prone or move it up to 10 feet in any direction horizontally."
+			])
+		},
+		"subclassfeature10": {
+			name: "Guarded Mind",
+			source : ["TCoE",43],
+			minlevel: 10,
+			description: desc([
+				"Starting at 10th level, the psionic energy flowing through you has bolstered your mind. You have resistance to psychic damage.",
+				"Moreover, if you start your turn charmed or frightened, you can expend a Psionic Energy die and end every effect on yourself subjecting you to those conditions."
+			])
+		},
+		"subclassfeature15": {
+			name: "Bulwark of Force",
+			source : ["TCoE",43],
+			minlevel: 15,
+			description: desc([
+				"At 15th level, you can shield yourself and others with telekinetic force. As a bonus action, you can choose creatures, which can include you, that you can see within 30 feet of you, up to a number of creatures equal to your Intelligence modifier (minimum of one creature). Each of the chosen creatures is protected by half cover for 1 minute or until you're incapacitated.",
+				"Once you take this bonus action, you can't do so again until you finish a long rest, unless you expend a Psionic Energy die to take it again."
+			])
+		},
+		"subclassfeature18": {
+			name: "Telekenetic Master",
+			source : ["TCoE",43],
+			minlevel: 18,
+			description: desc([
+				"By 18th level, your ability to move creatures and objects with your mind is matched by few. You can cast the Telekinesis spell, requiring no components, and your spellcasting ability for the spell is Intelligence. On each of your turns while you concentrate on the spell, including the turn when you cast it, you can make one attack with a weapon as a bonus action.",
+				"Once you cast the spell with this feature, you can't do so again until you finish a long rest, unless you expend a Psionic Energy die to cast it again."
+			])
+		}
+	}
+});
